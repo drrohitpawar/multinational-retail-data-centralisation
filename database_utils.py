@@ -32,7 +32,7 @@ class DatabaseConnector:
     DBAPI = 'psycopg2'
     HOST = 'localhost'
     USER = 'postgres'
-    PASSWORD = '1M45t01d7'
+    PASSWORD = 'postgres'
     DATABASE = 'sales_data'
     PORT = 5432
     engine = create_engine(f"{DATABASE_TYPE}+{DBAPI}://{USER}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}")
