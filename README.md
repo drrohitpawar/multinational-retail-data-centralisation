@@ -11,7 +11,7 @@ I will then query the database to get up-to-date metrics for the business.
 Download files to own computer. \
 Ensure all currect python libraries are installed. \
 Ensure credentials in upload_to_db function in database_utils are updated with the target database of your choice. \
-Run all '_data' python files which will extract each table and upload to your database. \
+Run all '_data' python files which will extract each table and upload to your database.
 
 Once data uploaded to your own postgresql database, \
 run all the sql files in Database_Schema_SQL to further clean the data, set correct data types and set primary and foreign keys. \
