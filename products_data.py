@@ -1,7 +1,7 @@
 import data_cleaning
 import data_extraction
 import database_utils
-from pandasgui import show
+#from pandasgui import show
 address = 's3://data-handling-public/products.csv'
 
 data_extraction.DataExtractor().extract_from_s3(address)

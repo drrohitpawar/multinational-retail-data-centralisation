@@ -44,6 +44,8 @@ class DataCleaning:
     return data
   
   def clean_store_data(self, data):
+    #set row1 lat column to NULL
+    data.iloc[0, 4] = np.nan
     #removing rows with values with lat column as they are all null
     data = data[data['lat'].isnull()]
     #dropping blank/unneccessary columns
@@ -53,6 +55,13 @@ class DataCleaning:
     #Changing continent names starting with 'ee'
     data.loc[data["continent"] == "eeEurope", "continent"] = 'Europe'
     data.loc[data["continent"] == "eeAmerica", "continent"] = 'America'
+    #removing null rows
+    data = data.dropna(subset=['store_code'])
+    #Removing letters from the staff numbers column
+    data['staff_numbers'] = data['staff_numbers'].str.replace('[^0-9]', '', regex=True)
+
+    #Removing duplicate index columns
+    data = data.iloc[: , 2:]
 
     return data
   
@@ -96,6 +105,7 @@ class DataCleaning:
     data['weight'] = data['weight'].astype(float)
     #standardise date_payment_confimed column to datetime format
     data['date_added'] = pd.to_datetime(data['date_added'], format='mixed', dayfirst=False)
+    data = data.iloc[:, 1:]
     return data
   
   def clean_orders_data(self, data):
