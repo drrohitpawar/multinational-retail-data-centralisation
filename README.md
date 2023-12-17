@@ -15,8 +15,11 @@ The database will then be queried to get up-to-date metrics for the business.
 
 ## Instructions:
 
+- Clone repository to a directory of choice:
 
-
+'''bash
+git clone
+'''
 
 Once data is uploaded to your own Postgresql database, \
 run all the SQL files in Database_Schema_SQL to further clean the data, set correct data types, and set primary and foreign keys. \
