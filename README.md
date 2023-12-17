@@ -16,17 +16,26 @@ The database will then be queried to get up-to-date metrics for the business.
 ## Instructions:
 
 - Clone repository to a directory of choice:
+```bash
+git clone https://github.com/drrohitpawar/multinational-retail-data-centralisation.git
+```
+- Install required python packages:
+```bash
+pip install -r requirements.txt
+```
+- Ensure to populate "my_db_creds.yaml" with your target database credentials.
+- Ensure java is installed on your local machine (needed for certain packages)
+- Run main.py
+```bash
+python main.py
+```
+- This will retrieve the data from various sources, clean it, and upload it to your database. This will take some time.
+- Now that the data is cleaned and uploaded, run all the SQL files in Database_Schema_SQL to further clean the data, set correct data types, and set primary and foreign keys.
+- The file names describe their function.
 
-'''bash
-git clone
-'''
 
-Once data is uploaded to your own Postgresql database, \
-run all the SQL files in Database_Schema_SQL to further clean the data, set correct data types, and set primary and foreign keys. \
-The file names describe their function.
-
-Once the database is set up, you can start querying the data to gather some insights. \
-There is a folder named Database_Query_SQL with 9 task SQL files. \
-These contain some example queries. Each file starts with a comment describing the question the query answers.
+- Once the database is set up, you can start querying the data to gather some insights. 
+- There is a folder named Database_Query_SQL with 9 task SQL files. 
+- These contain some example queries. Each file starts with a comment describing the question the query answers.
 
 
