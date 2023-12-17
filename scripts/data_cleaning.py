@@ -1,12 +1,7 @@
 import pandas as pd
-import datetime
-import string
 import numpy as np
 
 class DataCleaning:
-
-  def __init__ (self):
-    pass
 
   def clean_user_data(self, data):
     #drop null rows
@@ -28,7 +23,6 @@ class DataCleaning:
     data['date_of_birth'] = pd.to_datetime(data['date_of_birth'], format='mixed', dayfirst=False)
     #standardise date_payment_confimed column to datetime format
     data['join_date'] = pd.to_datetime(data['join_date'], format='mixed', dayfirst=False)
-    
     return data
   
   def clean_card_data(self, data):
@@ -40,7 +34,6 @@ class DataCleaning:
     data = data[pd.to_numeric(data['card_number'], errors='coerce').notnull()]
     #standardise date_payment_confimed column to datetime format
     data['date_payment_confirmed'] = pd.to_datetime(data['date_payment_confirmed'], format='mixed', dayfirst=False)
-
     return data
   
   def clean_store_data(self, data):
@@ -59,10 +52,8 @@ class DataCleaning:
     data = data.dropna(subset=['store_code'])
     #Removing letters from the staff numbers column
     data['staff_numbers'] = data['staff_numbers'].str.replace('[^0-9]', '', regex=True)
-
     #Removing duplicate index columns
     data = data.iloc[: , 2:]
-
     return data
   
   def convert_product_weights(self, data):
@@ -74,7 +65,6 @@ class DataCleaning:
     data['weight'] = data['weight'].apply(lambda x: (float(x[:-2]) * 0.028) if 'oz' in x else x)
     #convert kg to value without 'kg
     data['weight'] = data['weight'].apply(lambda x: float(x.strip('kg')) if 'kg' in str(x) else x)
-
     #convert 'value x value' values to kg
     def process_weight(x):
       if isinstance(x, str):
@@ -88,12 +78,10 @@ class DataCleaning:
                   return value * float_value_2 / 1000
       return x 
     data['weight'] = data['weight'].apply(process_weight)
-
     #convert g and ml to kg
     data['weight'] = data['weight'].apply(lambda x: float(x.strip('g .')) if 'g .' in str(x) else x)
     data['weight'] = data['weight'].apply(lambda x: float(x.strip('g')) / 1000 if 'g' in str(x) else x)
     data['weight'] = data['weight'].apply(lambda x: float(x.strip('ml')) /1000 if 'ml' in str(x) else x)
-
     return data
   
   def clean_products_data(self, data):
@@ -117,5 +105,4 @@ class DataCleaning:
     data = data.dropna()
     #drop rows with non numbers in month column
     data = data[pd.to_numeric(data['month'], errors='coerce').notnull()]
-
     return data
