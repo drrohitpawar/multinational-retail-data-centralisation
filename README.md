@@ -111,3 +111,33 @@ def read_json(self, file):
   return pd.read_json(file)
 ```
 
+### Subprocesses
+
+A separate individual Python file was created to extract and clean each table from their respective locations. A Python package named subprocesses was utilized in main.py to run all the files once main.py was run.
+
+```bash
+import subprocess
+
+#list of files in the data folder
+file_list = ['card_data.py', 'event_data.py', 'orders_data.py', 'products_data.py', 'store_data.py', 'users_data.py']
+ 
+if __name__ == '__main__':
+  #run all the files in the data column
+  for file in file_list:
+    subprocess.run(['python', 'scripts/' + file])
+```
+
+## Local Database Setup
+
+For this project, I set up a Postgresql server hosted on my local machine using pgadmin4
+Download link: https://www.pgadmin.org/download/
+
+- Download PgAdmin4
+- Run through the installation process
+- Launch PgAdmin4
+- Click on 'Add New Server'
+- Once set up, click on properties to see database credentials.
+- These credentials can be added to 'my_db_cred.yaml'
+
+
+
